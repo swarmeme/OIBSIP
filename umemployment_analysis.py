@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # %%
 unemployment_df = pd.read_csv('/Users/swarnim/Desktop/Unemployment_Rate_upto_11_2020.csv')
+unemployment_df_two = pd.read_csv('/Users/swarnim/Desktop/Unemployment in India.csv')
 # %%
 unemployment_df
 # %%
@@ -44,5 +45,25 @@ plt.figure(figsize=(8, 8))
 plt.pie(unemployment_region_df[' Estimated Unemployment Rate (%)'], labels=unemployment_region_df['Region'], autopct='%1.1f%%', startangle=90, colors=region_colors)
 plt.title('Distribution of Unemployed Individuals by Region')
 plt.show()
+# %%
+unemployment_df_two.head()
+# %%
+unemployment_df_two.info()
+# %%
+unemployment_df_two.isnull()
+# %%
+rural_data = unemployment_df_two[unemployment_df_two['Area'] == 'Rural'][' Estimated Unemployment Rate (%)']
+urban_data = unemployment_df_two[unemployment_df_two['Area'] == 'Urban'][' Estimated Unemployment Rate (%)']
+# %%
+rural_data
+# %%
+urban_data
+# %%
+plt.xlabel('Estimated Unemployment Rate (%)')
+plt.ylabel('Frequency')
+plt.title('Histogram of Estimated Unemployment Rate by Area Type and State')
+#%%
+plt.figure(figsize=(10,6))
+plt.hist([rural_data, urban_data], bins=10, alpha=0.7, label=['Rural', 'Urban'])
 
 # %%
